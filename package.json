@@ -8,13 +8,13 @@
   "main": "./lib/cors.js",
   "keywords": [],
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=7.6"
   },
   "scripts": {
     "test": "tape test/*.js",
     "docs": "jsdoc2md -t jsdoc2md/README.md lib/*.js > README.md; echo"
   },
   "dependencies": {
-    "kcors": "^1.2.1"
+    "kcors": "^2.2.1"
   }
 }
