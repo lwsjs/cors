@@ -1,9 +1,9 @@
 {
-  "name": "local-web-server-cors",
+  "name": "lws-cors",
   "author": "Lloyd Brookes <75pound@gmail.com>",
   "version": "0.0.0",
-  "description": "local-web-server-cors",
-  "repository": "https://github.com/local-web-server/cors.git",
+  "description": "lws-cors",
+  "repository": "https://github.com/lwsjs/cors.git",
   "license": "MIT",
   "main": "./lib/cors.js",
   "keywords": [],
