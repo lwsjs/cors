@@ -5,14 +5,15 @@
   "description": "lws-cors",
   "repository": "https://github.com/lwsjs/cors.git",
   "license": "MIT",
-  "main": "./lib/cors.js",
-  "keywords": [],
+  "keywords": [
+    "lws",
+    "cors"
+  ],
   "engines": {
     "node": ">=7.6"
   },
   "scripts": {
-    "test": "tape test/*.js",
-    "docs": "jsdoc2md -t jsdoc2md/README.md lib/*.js > README.md; echo"
+    "test": "test-runner test.js"
   },
   "dependencies": {
     "kcors": "^2.2.1"

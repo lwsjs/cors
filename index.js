@@ -1,6 +1,9 @@
 'use strict'
 
 class Cors {
+  description () {
+    return 'Cross-Origin Resource Sharing options.'
+  }
   optionDefinitions () {
     return [
       {
@@ -17,8 +20,8 @@ class Cors {
     options = options || {}
     const kcors = require('kcors')
     return kcors({
-      origin: options['cors.origin'],
-      allowMethods: options['cors.allow-methods']
+      origin: options.corsOrigin,
+      allowMethods: options.corsAllowMethods
     })
   }
 }
