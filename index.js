@@ -1,6 +1,4 @@
-'use strict'
-
-class Cors {
+module.exports = MiddlewareBase => class Cors extends MiddlewareBase {
   description () {
     return 'Cross-Origin Resource Sharing options.'
   }
@@ -18,12 +16,11 @@ class Cors {
   }
   middleware (options) {
     options = options || {}
+    const corsOptions = {}
+    if (options.corsOrigin) corsOptions.corsOrigin = options.corsOrigin
+    if (options.corsAllowMethods) corsOptions.corsAllowMethods = options.corsAllowMethods
+    this.emit('verbose', 'middleware.cors.config', corsOptions)
     const kcors = require('kcors')
-    return kcors({
-      origin: options.corsOrigin,
-      allowMethods: options.corsAllowMethods
-    })
+    return kcors(corsOptions)
   }
 }
-
-module.exports = Cors

@@ -4,6 +4,10 @@
 [![Dependency Status](https://david-dm.org/lwsjs/cors.svg)](https://david-dm.org/lwsjs/cors)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](https://github.com/feross/standard)
 
-# cors
+# lws-cors
 
-See https://github.com/koajs/cors.
+lws middleware to configure Cross-Origin Resource Sharing rules. For usage instructions, see [here](https://github.com/lwsjs/local-web-server/wiki/How-to-configure-Cross-Origin-Resource-Sharing-(CORS)).
+
+* * *
+
+&copy; 2017 Lloyd Brookes <75pound@gmail.com>.
