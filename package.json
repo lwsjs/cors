@@ -16,7 +16,9 @@
     "test": "test-runner test.js"
   },
   "dependencies": {
-    "kcors": "^2.2.1",
+    "kcors": "^2.2.1"
+  },
+  "devDependencies": {
     "lws": "^1.0.0-pre2.1",
     "req-then": "^0.6.2",
     "test-runner": "^0.4.0"
