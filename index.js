@@ -1,6 +1,6 @@
 module.exports = MiddlewareBase => class Cors extends MiddlewareBase {
   description () {
-    return 'Cross-Origin Resource Sharing support.'
+    return 'Support for adding Cross-Origin Resource Sharing (CORS) headers.'
   }
   optionDefinitions () {
     return [
