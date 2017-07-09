@@ -6,7 +6,7 @@
 
 # lws-cors
 
-Support for adding Cross-Origin Resource Sharing (CORS) headers to lws. For usage instructions, see [here](https://github.com/lwsjs/local-web-server/wiki/How-to-configure-Cross-Origin-Resource-Sharing-(CORS)).
+Support for setting Cross-Origin Resource Sharing (CORS) headers to lws. For usage instructions, see [here](https://github.com/lwsjs/local-web-server/wiki/How-to-configure-Cross-Origin-Resource-Sharing-(CORS)).
 
 * * *
 
