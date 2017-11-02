@@ -16,7 +16,7 @@
     "test": "test-runner test.js"
   },
   "dependencies": {
-    "kcors": "^2.2.1"
+    "@koa/cors": "^2.2.1"
   },
   "devDependencies": {
     "lws": "^1.0.0-pre4.0",

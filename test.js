@@ -2,6 +2,8 @@ const TestRunner = require('test-runner')
 const Cors = require('./')
 const Lws = require('lws')
 const request = require('req-then')
+const usage = require('lws/lib/usage')
+usage.disable()
 
 const runner = new TestRunner()
 
