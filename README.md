@@ -1,7 +1,7 @@
 [![view on npm](https://img.shields.io/npm/v/lws-cors.svg)](https://www.npmjs.org/package/lws-cors)
 [![npm module downloads](https://img.shields.io/npm/dt/lws-cors.svg)](https://www.npmjs.org/package/lws-cors)
 [![Build Status](https://travis-ci.org/lwsjs/cors.svg?branch=master)](https://travis-ci.org/lwsjs/cors)
-[![Dependency Status](https://david-dm.org/lwsjs/cors.svg)](https://david-dm.org/lwsjs/cors)
+[![Dependency Status](https://badgen.net/david/dep/lwsjs/cors)](https://david-dm.org/lwsjs/cors)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](https://github.com/feross/standard)
 
 # lws-cors
@@ -10,4 +10,4 @@ Support for setting Cross-Origin Resource Sharing (CORS) headers to lws. For usa
 
 * * *
 
-&copy; 2017 Lloyd Brookes <75pound@gmail.com>.
+&copy; 2016-19 Lloyd Brookes \<75pound@gmail.com\>.

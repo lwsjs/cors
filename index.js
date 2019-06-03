@@ -1,7 +1,10 @@
-module.exports = MiddlewareBase => class Cors extends MiddlewareBase {
+const EventEmitter = require('events')
+
+class Cors extends EventEmitter {
   description () {
     return 'Support for setting Cross-Origin Resource Sharing (CORS) headers.'
   }
+
   optionDefinitions () {
     return [
       {
@@ -19,14 +22,16 @@ module.exports = MiddlewareBase => class Cors extends MiddlewareBase {
       }
     ]
   }
-  middleware (options) {
-    options = options || {}
+
+  middleware (config) {
     const corsOptions = {}
-    if (options.corsOrigin) corsOptions.origin = options.corsOrigin
-    if (options.corsAllowMethods) corsOptions.allowMethods = options.corsAllowMethods
-    if (options.corsCredentials) corsOptions.credentials = options.corsCredentials
+    if (config.corsOrigin) corsOptions.origin = config.corsOrigin
+    if (config.corsAllowMethods) corsOptions.allowMethods = config.corsAllowMethods
+    if (config.corsCredentials) corsOptions.credentials = config.corsCredentials
     this.emit('verbose', 'middleware.cors.config', corsOptions)
     const kcors = require('@koa/cors')
     return kcors(corsOptions)
   }
 }
+
+module.exports = Cors

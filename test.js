@@ -1,16 +1,30 @@
-const TestRunner = require('test-runner')
+const Tom = require('test-runner').Tom
 const Cors = require('./')
 const Lws = require('lws')
-const request = require('req-then')
-const usage = require('lws/lib/usage')
-usage.disable()
+const fetch = require('node-fetch')
+const a = require('assert')
 
-const runner = new TestRunner()
+const tom = module.exports = new Tom('cors')
 
-runner.test('simple', async function () {
+tom.test('simple', async function () {
   const port = 8000 + this.index
-  const lws = new Lws()
-  const server = lws.listen({ port, stack: Cors })
-  const response = await request(`http://localhost:${port}/`)
-  server.close()
+  class One {
+    middleware () {
+      return function (ctx) {
+        ctx.body = 'one'
+      }
+    }
+  }
+  const lws = Lws.create({ port, stack: [ Cors, One ] })
+  const response = await fetch(`http://localhost:${port}/`, {
+    method: 'OPTIONS',
+    headers: {
+      'origin': 'localhost',
+      'Access-Control-Request-Method': 'GET'
+    }
+  })
+  const body = await response.text()
+  a.strictEqual(body, '')
+  a.deepStrictEqual(response.headers.get('access-control-allow-methods'), 'GET,HEAD,PUT,POST,DELETE,PATCH' )
+  lws.server.close()
 })
