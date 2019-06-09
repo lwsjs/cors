@@ -8,6 +8,15 @@
 
 Support for setting Cross-Origin Resource Sharing (CORS) headers to lws. For usage instructions, see [here](https://github.com/lwsjs/local-web-server/wiki/How-to-configure-Cross-Origin-Resource-Sharing-(CORS)).
 
+Adds the following options to lws.
+
+```
+--cors.origin                  `Access-Control-Allow-Origin` value. Default is the request Origin header.
+--cors.allow-methods           `Access-Control-Allow-Methods` value. Default is
+                               "GET,HEAD,PUT,POST,DELETE,PATCH"
+--cors.credentials             Adds `Access-Control-Allow-Credentials` header.
+```
+
 * * *
 
 &copy; 2016-19 Lloyd Brookes \<75pound@gmail.com\>.
