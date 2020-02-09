@@ -2,9 +2,9 @@ const Tom = require('test-runner').Tom
 const Cors = require('./')
 const Lws = require('lws')
 const fetch = require('node-fetch')
-const a = require('assert')
+const a = require('assert').strict
 
-const tom = module.exports = new Tom('cors')
+const tom = module.exports = new Tom()
 
 tom.test('simple', async function () {
   const port = 8000 + this.index
@@ -24,7 +24,7 @@ tom.test('simple', async function () {
     }
   })
   const body = await response.text()
-  a.strictEqual(body, '')
-  a.deepStrictEqual(response.headers.get('access-control-allow-methods'), 'GET,HEAD,PUT,POST,DELETE,PATCH' )
+  a.equal(body, '')
+  a.deepEqual(response.headers.get('access-control-allow-methods'), 'GET,HEAD,PUT,POST,DELETE,PATCH' )
   lws.server.close()
 })
