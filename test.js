@@ -1,10 +1,10 @@
-const Tom = require('test-runner').Tom
-const Cors = require('./')
-const Lws = require('lws')
-const fetch = require('node-fetch')
-const a = require('assert').strict
+import TestRunner from 'test-runner'
+import Cors from 'lws-cors'
+import Lws from 'lws'
+import fetch from 'node-fetch'
+import { strict as a } from 'assert'
 
-const tom = module.exports = new Tom()
+const tom = new TestRunner.Tom()
 
 tom.test('simple', async function () {
   const port = 8000 + this.index
@@ -15,7 +15,7 @@ tom.test('simple', async function () {
       }
     }
   }
-  const lws = Lws.create({ port, stack: [ Cors, One ] })
+  const lws = await Lws.create({ port, stack: [ Cors, One ] })
   const response = await fetch(`http://localhost:${port}/`, {
     method: 'OPTIONS',
     headers: {
@@ -28,3 +28,5 @@ tom.test('simple', async function () {
   a.deepEqual(response.headers.get('access-control-allow-methods'), 'GET,HEAD,PUT,POST,DELETE,PATCH' )
   lws.server.close()
 })
+
+export default tom

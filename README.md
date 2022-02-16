@@ -1,7 +1,8 @@
-[![view on npm](https://img.shields.io/npm/v/lws-cors.svg)](https://www.npmjs.org/package/lws-cors)
-[![npm module downloads](https://img.shields.io/npm/dt/lws-cors.svg)](https://www.npmjs.org/package/lws-cors)
-[![Build Status](https://travis-ci.org/lwsjs/cors.svg?branch=master)](https://travis-ci.org/lwsjs/cors)
-[![Dependency Status](https://badgen.net/david/dep/lwsjs/cors)](https://david-dm.org/lwsjs/cors)
+[![view on npm](https://badgen.net/npm/v/lws-cors)](https://www.npmjs.org/package/lws-cors)
+[![npm module downloads](https://badgen.net/npm/dt/lws-cors)](https://www.npmjs.org/package/lws-cors)
+[![Gihub repo dependents](https://badgen.net/github/dependents-repo/lwsjs/cors)](https://github.com/lwsjs/cors/network/dependents?dependent_type=REPOSITORY)
+[![Gihub package dependents](https://badgen.net/github/dependents-pkg/lwsjs/cors)](https://github.com/lwsjs/cors/network/dependents?dependent_type=PACKAGE)
+[![Node.js CI](https://github.com/lwsjs/cors/actions/workflows/node.js.yml/badge.svg)](https://github.com/lwsjs/cors/actions/workflows/node.js.yml)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](https://github.com/feross/standard)
 
 # lws-cors
@@ -19,4 +20,4 @@ Adds the following options to lws.
 
 * * *
 
-&copy; 2016-20 Lloyd Brookes \<75pound@gmail.com\>.
+&copy; 2016-22 Lloyd Brookes \<75pound@gmail.com\>.

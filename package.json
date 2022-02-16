@@ -10,19 +10,21 @@
     "lws-middleware",
     "cors"
   ],
+  "exports": "./index.js",
+  "type": "module",
   "engines": {
-    "node": ">=10"
+    "node": ">=12.17"
   },
   "scripts": {
     "test": "test-runner test.js"
   },
   "dependencies": {
-    "@koa/cors": "^3.0.0"
+    "@koa/cors": "^3.1.0"
   },
   "devDependencies": {
-    "lws": "^2.0.8",
-    "node-fetch": "^2.6.0",
-    "test-runner": "^0.8.13"
+    "lws": "^4.1.1",
+    "node-fetch": "^3.2.0",
+    "test-runner": "^0.10.1"
   },
   "files": [
     "index.js"

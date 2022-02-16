@@ -1,4 +1,5 @@
-const EventEmitter = require('events')
+import kcors from '@koa/cors'
+import EventEmitter from 'events'
 
 class Cors extends EventEmitter {
   description () {
@@ -29,9 +30,8 @@ class Cors extends EventEmitter {
     if (config.corsAllowMethods) corsOptions.allowMethods = config.corsAllowMethods
     if (config.corsCredentials) corsOptions.credentials = config.corsCredentials
     this.emit('verbose', 'middleware.cors.config', corsOptions)
-    const kcors = require('@koa/cors')
     return kcors(corsOptions)
   }
 }
 
-module.exports = Cors
+export default Cors
