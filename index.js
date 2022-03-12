@@ -20,6 +20,11 @@ class Cors extends EventEmitter {
         name: 'cors.credentials',
         type: Boolean,
         description: 'Adds `Access-Control-Allow-Credentials` header.'
+      },
+      {
+        name: 'cors.secure-context',
+        type: Boolean,
+        description: 'Adds `Cross-Origin-Opener-Policy` & `Cross-Origin-Embedder-Policy` headers.'
       }
     ]
   }
@@ -29,6 +34,7 @@ class Cors extends EventEmitter {
     if (config.corsOrigin) corsOptions.origin = config.corsOrigin
     if (config.corsAllowMethods) corsOptions.allowMethods = config.corsAllowMethods
     if (config.corsCredentials) corsOptions.credentials = config.corsCredentials
+    if (config.corsSecureContext) corsOptions.secureContext = config.corsSecureContext
     this.emit('verbose', 'middleware.cors.config', corsOptions)
     return kcors(corsOptions)
   }
