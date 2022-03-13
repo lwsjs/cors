@@ -37,10 +37,12 @@ class Cors extends EventEmitter {
     if (config.corsOrigin) corsOptions.origin = config.corsOrigin
     if (config.corsAllowMethods) corsOptions.allowMethods = config.corsAllowMethods
     if (config.corsCredentials) corsOptions.credentials = config.corsCredentials
-    if (config.corsOpenerPolicy) corsOptions.openerPolicy = config.corsOpenerPolicy
-    if (config.corsEmbedderPolicy) corsOptions.embedderPolicy = config.corsEmbedderPolicy
 
-    this.emit('verbose', 'middleware.cors.config', corsOptions)
+    this.emit('verbose', 'middleware.cors.config', {
+      ...corsOptions,
+      openerPolicy: config.corsOpenerPolicy,
+      embedderPolicy: config.corsEmbedderPolicy
+    })
     const koaCorsMiddleware = kcors(corsOptions)
 
     return async function (ctx, next) {
