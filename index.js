@@ -22,9 +22,12 @@ class Cors extends EventEmitter {
         description: 'Adds `Access-Control-Allow-Credentials` header.'
       },
       {
-        name: 'cors.secure-context',
-        type: Boolean,
-        description: 'Adds `Cross-Origin-Opener-Policy` & `Cross-Origin-Embedder-Policy` headers.'
+        name: 'cors.opener-policy',
+        description: 'A value for the `Cross-Origin-Opener-Policy` header (specify `unsafe-none`, same-origin-allow-popups` or `same-origin`).'
+      },
+      {
+        name: 'cors.embedder-policy',
+        description: 'A value for the `Cross-Origin-Embedder-Policy` header (specify `unsafe-none` or `require-corp`).'
       }
     ]
   }
@@ -34,9 +37,23 @@ class Cors extends EventEmitter {
     if (config.corsOrigin) corsOptions.origin = config.corsOrigin
     if (config.corsAllowMethods) corsOptions.allowMethods = config.corsAllowMethods
     if (config.corsCredentials) corsOptions.credentials = config.corsCredentials
-    if (config.corsSecureContext) corsOptions.secureContext = config.corsSecureContext
+    if (config.corsOpenerPolicy) corsOptions.openerPolicy = config.corsOpenerPolicy
+    if (config.corsEmbedderPolicy) corsOptions.embedderPolicy = config.corsEmbedderPolicy
+
     this.emit('verbose', 'middleware.cors.config', corsOptions)
-    return kcors(corsOptions)
+    const koaCorsMiddleware = kcors(corsOptions)
+
+    return async function (ctx, next) {
+      await koaCorsMiddleware(ctx, next)
+      if (ctx.response.get('Access-Control-Allow-Origin')) {
+        if (config.corsOpenerPolicy) {
+          ctx.response.set('Cross-Origin-Opener-Policy', config.corsOpenerPolicy)
+        }
+        if (config.corsEmbedderPolicy) {
+          ctx.response.set('Cross-Origin-Embedder-Policy', config.corsEmbedderPolicy)
+        }
+      }
+    }
   }
 }
 

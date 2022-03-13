@@ -16,7 +16,10 @@ Adds the following options to lws.
 --cors.allow-methods           `Access-Control-Allow-Methods` value. Default is
                                "GET,HEAD,PUT,POST,DELETE,PATCH"
 --cors.credentials             Adds `Access-Control-Allow-Credentials` header.
-- cors.secure-context          Adds `Cross-Origin-Opener-Policy` & `Cross-Origin-Embedder-Policy` headers.', default is false
+--cors.opener-policy string     A value for the `Cross-Origin-Opener-Policy` header (specify `unsafe-none`,
+                                same-origin-allow-popups` or `same-origin`).
+--cors.embedder-policy string   A value for the `Cross-Origin-Embedder-Policy` header (specify `unsafe-none`
+                                or `require-corp`).
 ```
 
 * * *
