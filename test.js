@@ -58,7 +58,7 @@ tom.test('GET request: allow-methods in response, body not empty', async functio
   }
 })
 
-tom.test('OPTIONS request, opener-policy', async function () {
+tom.test('OPTIONS request, opener-policy, origin header: COOP in response', async function () {
   const port = 8000 + this.index
   class One {
     middleware () {
@@ -88,7 +88,7 @@ tom.test('OPTIONS request, opener-policy', async function () {
   }
 })
 
-tom.test('GET request, opener-policy', async function () {
+tom.test('GET request, opener-policy, origin header: COOP in response', async function () {
   const port = 8000 + this.index
   class One {
     middleware () {
@@ -117,7 +117,7 @@ tom.test('GET request, opener-policy', async function () {
   }
 })
 
-tom.test('GET request, opener-policy, no origin', async function () {
+tom.test('GET request, opener-policy, no origin header: COOP in response', async function () {
   const port = 8000 + this.index
   class One {
     middleware () {
@@ -143,7 +143,7 @@ tom.test('GET request, opener-policy, no origin', async function () {
   }
 })
 
-tom.test('GET request, embedder-policy', async function () {
+tom.test('GET request, embedder-policy, origin header: COOP in response', async function () {
   const port = 8000 + this.index
   class One {
     middleware () {
@@ -172,7 +172,7 @@ tom.test('GET request, embedder-policy', async function () {
   }
 })
 
-tom.test('GET request, embedder-policy, no origin', async function () {
+tom.test('GET request, embedder-policy, no origin header: COOP in response', async function () {
   const port = 8000 + this.index
   class One {
     middleware () {
