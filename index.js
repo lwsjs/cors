@@ -47,13 +47,11 @@ class Cors extends EventEmitter {
 
     return async function (ctx, next) {
       await koaCorsMiddleware(ctx, next)
-      if (ctx.response.get('Access-Control-Allow-Origin')) {
-        if (config.corsOpenerPolicy) {
-          ctx.response.set('Cross-Origin-Opener-Policy', config.corsOpenerPolicy)
-        }
-        if (config.corsEmbedderPolicy) {
-          ctx.response.set('Cross-Origin-Embedder-Policy', config.corsEmbedderPolicy)
-        }
+      if (config.corsOpenerPolicy) {
+        ctx.response.set('Cross-Origin-Opener-Policy', config.corsOpenerPolicy)
+      }
+      if (config.corsEmbedderPolicy) {
+        ctx.response.set('Cross-Origin-Embedder-Policy', config.corsEmbedderPolicy)
       }
     }
   }
