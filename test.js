@@ -58,7 +58,7 @@ tom.test('GET request: allow-methods in response, body not empty', async functio
   }
 })
 
-tom.test('OPTIONS request, opener-policy', async function () {
+tom.test('OPTIONS request, opener-policy, origin header: COOP in response', async function () {
   const port = 8000 + this.index
   class One {
     middleware () {
@@ -88,7 +88,7 @@ tom.test('OPTIONS request, opener-policy', async function () {
   }
 })
 
-tom.test('GET request, opener-policy', async function () {
+tom.test('GET request, opener-policy, origin header: COOP in response', async function () {
   const port = 8000 + this.index
   class One {
     middleware () {
@@ -117,7 +117,33 @@ tom.test('GET request, opener-policy', async function () {
   }
 })
 
-tom.test('GET request, embedder-policy', async function () {
+tom.test('GET request, opener-policy, no origin header: COOP in response', async function () {
+  const port = 8000 + this.index
+  class One {
+    middleware () {
+      return function (ctx) {
+        ctx.body = 'one'
+      }
+    }
+  }
+  const lws = await Lws.create({
+    port,
+    stack: [ Cors, One ],
+    corsOpenerPolicy: 'same-origin'
+  })
+  try {
+    const response = await fetch(`http://localhost:${port}/`, {
+      method: 'GET',
+    })
+    const body = await response.text()
+    a.equal(body, 'one')
+    a.deepEqual(response.headers.get('Cross-Origin-Opener-Policy'), 'same-origin' )
+  } finally {
+    lws.server.close()
+  }
+})
+
+tom.test('GET request, embedder-policy, origin header: COOP in response', async function () {
   const port = 8000 + this.index
   class One {
     middleware () {
@@ -137,6 +163,32 @@ tom.test('GET request, embedder-policy', async function () {
       headers: {
         'origin': 'localhost-test'
       }
+    })
+    const body = await response.text()
+    a.equal(body, 'one')
+    a.deepEqual(response.headers.get('Cross-Origin-Embedder-Policy'), 'require-corp' )
+  } finally {
+    lws.server.close()
+  }
+})
+
+tom.test('GET request, embedder-policy, no origin header: COOP in response', async function () {
+  const port = 8000 + this.index
+  class One {
+    middleware () {
+      return function (ctx) {
+        ctx.body = 'one'
+      }
+    }
+  }
+  const lws = await Lws.create({
+    port,
+    stack: [ Cors, One ],
+    corsEmbedderPolicy: 'require-corp'
+  })
+  try {
+    const response = await fetch(`http://localhost:${port}/`, {
+      method: 'GET',
     })
     const body = await response.text()
     a.equal(body, 'one')
