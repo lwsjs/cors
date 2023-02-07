@@ -10,24 +10,29 @@ class Cors extends EventEmitter {
     return [
       {
         name: 'cors.origin',
-        description: '`Access-Control-Allow-Origin` value. Default is the request Origin header.'
+        description: 'Set a `Access-Control-Allow-Origin` value. Default is the request Origin header.'
       },
       {
         name: 'cors.allow-methods',
-        description: '`Access-Control-Allow-Methods` value. Default is "GET,HEAD,PUT,POST,DELETE,PATCH"'
+        description: 'Set a `Access-Control-Allow-Methods` value. Default is "GET,HEAD,PUT,POST,DELETE,PATCH"'
       },
       {
         name: 'cors.credentials',
         type: Boolean,
-        description: 'Adds `Access-Control-Allow-Credentials` header.'
+        description: 'Set this flag to add `Access-Control-Allow-Credentials` header.'
       },
       {
         name: 'cors.opener-policy',
-        description: 'A value for the `Cross-Origin-Opener-Policy` header (specify `unsafe-none`, same-origin-allow-popups` or `same-origin`).'
+        description: 'Set a value for the `Cross-Origin-Opener-Policy` header (specify `unsafe-none`, same-origin-allow-popups` or `same-origin`).'
       },
       {
         name: 'cors.embedder-policy',
-        description: 'A value for the `Cross-Origin-Embedder-Policy` header (specify `unsafe-none` or `require-corp`).'
+        description: 'Set a value for the `Cross-Origin-Embedder-Policy` header (specify `unsafe-none` or `require-corp`).'
+      },
+      {
+        name: 'cors.private-network-access',
+        type: Boolean,
+        description: 'Set this flag to enable `Access-Control-Request-Private-Network` support.'
       }
     ]
   }
@@ -37,6 +42,7 @@ class Cors extends EventEmitter {
     if (config.corsOrigin) corsOptions.origin = config.corsOrigin
     if (config.corsAllowMethods) corsOptions.allowMethods = config.corsAllowMethods
     if (config.corsCredentials) corsOptions.credentials = config.corsCredentials
+    if (config.corsPrivateNetworkAccess) corsOptions.privateNetworkAccess = config.corsPrivateNetworkAccess
 
     this.emit('verbose', 'middleware.cors.config', {
       ...corsOptions,

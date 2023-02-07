@@ -198,4 +198,35 @@ tom.test('GET request, embedder-policy, no origin header: COOP in response', asy
   }
 })
 
+tom.test('OPTIONS, Access-Control-Request-Private-Network set', async function () {
+  const port = 8000 + this.index
+  class One {
+    middleware () {
+      return function (ctx) {
+        ctx.body = 'one'
+      }
+    }
+  }
+  const lws = await Lws.create({
+    port,
+    stack: [ Cors, One ],
+    corsPrivateNetworkAccess: true
+  })
+  try {
+    const response = await fetch(`http://localhost:${port}/`, {
+      method: 'OPTIONS',
+      headers: {
+        origin: `http://localhost:${port}/`,
+        'Access-Control-Request-Private-Network': 'true',
+        'Access-Control-Request-Method': 'PUT'
+      }
+    })
+    a.equal(response.headers.get('access-control-allow-methods'), 'GET,HEAD,PUT,POST,DELETE,PATCH')
+    a.equal(response.headers.get('access-control-allow-origin'), `http://localhost:${port}/`)
+    a.equal(response.headers.get('access-control-allow-private-network'), 'true')
+  } finally {
+    lws.server.close()
+  }
+})
+
 export default tom
