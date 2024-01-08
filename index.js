@@ -44,6 +44,11 @@ class Cors extends EventEmitter {
     if (config.corsCredentials) corsOptions.credentials = config.corsCredentials
     if (config.corsPrivateNetworkAccess) corsOptions.privateNetworkAccess = config.corsPrivateNetworkAccess
 
+    /* See https://github.com/koajs/cors/issues/94 */
+    corsOptions.origin = function origin (ctx) {
+      return ctx.get('origin') || '*'
+    }
+
     this.emit('verbose', 'middleware.cors.config', {
       ...corsOptions,
       openerPolicy: config.corsOpenerPolicy,
